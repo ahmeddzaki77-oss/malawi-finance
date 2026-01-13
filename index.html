@@ -4,224 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malawi Fiscal Stabilization Platform</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { 
-            --malawi-red: #ce1126; 
-            --malawi-green: #007a33; 
-            --finance-blue: #1a2b48; 
-            --gold: #d4af37;
-        }
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f0f2f5; color: #333; line-height: 1.6; }
-        
-        header { 
-            background: var(--finance-blue); 
-            color: white; 
-            padding: 40px 20px; 
-            text-align: center; 
-            border-bottom: 8px solid var(--malawi-red); 
-        }
-
-        .logo-container {
-            background: white;
-            padding: 15px;
-            display: inline-block;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .logo-container img { height: 50px; margin: 0 20px; vertical-align: middle; }
-
-        .hero { background: white; padding: 60px 20px; text-align: center; border-bottom: 1px solid #ddd; }
-        
-        .stats-grid { 
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: -40px auto 40px auto;
-            padding: 0 20px;
-        }
-        
-        .stat-card { 
-            background: white; 
-            padding: 25px; 
-            border-radius: 12px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-            text-align: center;
-            border-top: 5px solid var(--gold);
-        }
-
-        .stat-card h3 { font-size: 0.85rem; color: #666; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
-        .stat-card p { font-size: 1.8rem; font-weight: bold; margin: 0; color: var(--finance-blue); }
-
-        .content-section { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-
-        .chart-container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
-        }
-
-        .anti-corruption {
-            background: #fff9db;
-            border-left: 10px solid #fab005;
-            padding: 30px;
-            border-radius: 0 12px 12px 0;
-            margin-bottom: 50px;
-        }
-
-        .pathway-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            background: white; 
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .pathway-table th, td { padding: 18px; border-bottom: 1px solid #eee; text-align: left; }
-        .pathway-table th { background: var(--finance-blue); color: white; text-transform: uppercase; font-size: 0.8rem; }
-        
-        .status-pill {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            background: #d4edda;
-            color: #155724;
-        }
-
-        footer { 
-            background: #222; 
-            color: #ccc; 
-            text-align: center; 
-            padding: 50px 20px; 
-            margin-top: 60px;
-        }
+        :root { --malawi-red: #ce1126; --malawi-green: #007a33; --finance-blue: #1a2b48; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #f4f7f6; }
+        header { background: var(--finance-blue); color: white; padding: 20px; text-align: center; border-bottom: 5px solid var(--malawi-red); }
+        .hero { background: white; padding: 40px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .stats-container { display: flex; justify-content: space-around; padding: 20px; background: #eef2f3; }
+        .stat-card { background: white; padding: 20px; border-radius: 8px; width: 25%; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center; }
+        .stat-card h3 { color: var(--finance-blue); margin-top: 0; }
+        .pathway-table { width: 90%; margin: 40px auto; border-collapse: collapse; background: white; }
+        .pathway-table th, td { padding: 15px; border: 1px solid #ddd; text-align: left; }
+        .pathway-table th { background: var(--finance-blue); color: white; }
+        .rationale { background: var(--malawi-green); color: white; padding: 40px; text-align: center; }
+        .verified { color: green; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Emblem_of_the_United_Arab_Emirates.svg/150px-Emblem_of_the_United_Arab_Emirates.svg.png" alt="UAE Finance">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/The_World_Bank_logo.svg/500px-The_World_Bank_logo.svg.png" alt="World Bank">
-    </div>
     <h1>National Fiscal Stabilization & FX Recovery Platform</h1>
-    <p>Official Transparency Portal | Republic of Malawi</p>
+    <p>Official Portal of the Ministry of Finance & Commerce, Republic of Malawi</p>
 </header>
 
 <section class="hero">
-    <h2 style="color: var(--finance-blue);">Kwacha Recovery Roadmap</h2>
-    <p style="max-width: 800px; margin: 20px auto; font-size: 1.1rem; color: #666;">
-        Finance is the backbone of society. By stabilizing the Kwacha, we protect the purchasing power of every citizen. This platform ensures that foreign aid from the UAE and World Bank is directly utilized to lower inflation and restore fiscal trust.
+    <h2>Restoring the Kwacha Through Absolute Transparency</h2>
+    <p>In partnership with <strong>The World Bank</strong> and the <strong>UAE Ministry of Finance</strong>, this platform tracks every Kwacha to prevent corruption and stabilize our economy.</p>
+</section>
+
+<div class="stats-container">
+    <div class="stat-card">
+        <h3>FX Reserve</h3>
+        <p style="font-size: 24px;">$420.5M USD</p>
+        <small style="color: green;">↑ 4.2% this month</small>
+    </div>
+    <div class="stat-card">
+        <h3>Kwacha Volatility</h3>
+        <p style="font-size: 24px;">Low</p>
+        <small>Targeting 1700:1</small>
+    </div>
+    <div class="stat-card">
+        <h3>Audit Rating</h3>
+        <p style="font-size: 24px;">AAA</p>
+        <small>External Audit: UAE/World Bank</small>
+    </div>
+</div>
+
+<section class="rationale">
+    <h2>Why Finance First?</h2>
+    <p style="max-width: 800px; margin: 0 auto; font-size: 18px;">
+        "Finance is the lifeblood of Malawi. By prioritizing the <strong>National Fiscal Stabilization Platform</strong> over immediate expansion in education or health, we are fixing the engine of the ship. A stable Kwacha means cheaper books for students and more affordable medicine for patients. We fix the economy to save the nation."
     </p>
 </section>
 
-<div class="stats-grid">
-    <div class="stat-card">
-        <h3>FX Reserve</h3>
-        <p>$420.5M</p>
-    </div>
-    <div class="stat-card">
-        <h3>MWK/USD Rate</h3>
-        <p>1,745.00</p>
-    </div>
-    <div class="stat-card">
-        <h3>Trust Score</h3>
-        <p>AAA-</p>
-    </div>
-</div>
+<h2 style="text-align:center; margin-top:40px;">Live Money Pathway Tracker</h2>
+<table class="pathway-table">
+    <thead>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Funding Source</th>
+            <th>Primary Purpose</th>
+            <th>Amount</th>
+            <th>Audit Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>#MW-7892</td>
+            <td>World Bank Grant</td>
+            <td>Import Substitution Fund</td>
+            <td>$50,000,000</td>
+            <td class="verified">✓ VERIFIED</td>
+        </tr>
+        <tr>
+            <td>#MW-7893</td>
+            <td>UAE Ministry of Finance</td>
+            <td>FX Market Liquidity Injection</td>
+            <td>$25,000,000</td>
+            <td class="verified">✓ VERIFIED</td>
+        </tr>
+        <tr>
+            <td>#MW-7894</td>
+            <td>Domestic Revenue</td>
+            <td>Public Sector Salaries (Jan 2026)</td>
+            <td>MWK 14.2B</td>
+            <td class="verified" style="color:orange;">⚠ PENDING FINAL AUDIT</td>
+        </tr>
+    </tbody>
+</table>
 
-<div class="content-section">
-    <div class="chart-container">
-        <h3 style="text-align:center; color: var(--finance-blue);">Projected Kwacha Stabilization (2025-2026)</h3>
-        <canvas id="recoveryChart"></canvas>
-    </div>
-
-    <div class="anti-corruption">
-        <h3>🛡️ The "Cashgate" Shield</h3>
-        <p>
-            <strong>Zero-Leakage Guarantee:</strong> Every dollar from our partners is digitally "locked" to specific travel pathways. Funds cannot be withdrawn as cash. They move only via verified bank-to-bank transfers for approved imports (Fuel, Fertilizer, and Medicine), visible to any citizen in real-time.
-        </p>
-    </div>
-
-    <h3 style="color: var(--finance-blue);">Real-Time Budget Pathways</h3>
-    <table class="pathway-table">
-        <thead>
-            <tr>
-                <th>Source</th>
-                <th>Target Utilization</th>
-                <th>Amount (USD)</th>
-                <th>Audit Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>World Bank</td>
-                <td>Emergency FX Liquidity</td>
-                <td>$150,000,000</td>
-                <td><span class="status-pill">COMPLIANT</span></td>
-            </tr>
-            <tr>
-                <td>UAE Finance</td>
-                <td>National Fuel Reserve</td>
-                <td>$75,000,000</td>
-                <td><span class="status-pill">COMPLIANT</span></td>
-            </tr>
-            <tr>
-                <td>UAE Finance</td>
-                <td>Agriculture Support</td>
-                <td>$25,000,000</td>
-                <td><span class="status-pill">COMPLIANT</span></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<footer>
-    <p><strong>Developed for High School Economics Project 2026</strong></p>
-    <p>Representing the Malawi Ministry of Finance & Commerce Initiative</p>
-    <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.6;">Data based on 2025/2026 fiscal projections.</p>
+<footer style="text-align:center; padding: 20px; color: #666;">
+    &copy; 2026 Government of Malawi | National Fiscal Stabilization Initiative
 </footer>
-
-<script>
-    // Chart.js implementation for the recovery roadmap
-    const ctx = document.getElementById('recoveryChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Jan 25', 'Mar 25', 'Jun 25', 'Sep 25', 'Dec 25', 'Jan 26 (Target)'],
-            datasets: [{
-                label: 'MWK per 1 USD (Lower is Better)',
-                data: [2100, 1950, 1850, 1780, 1745, 1700],
-                borderColor: '#007a33',
-                backgroundColor: 'rgba(0, 122, 51, 0.1)',
-                fill: true,
-                tension: 0.4,
-                borderWidth: 3,
-                pointRadius: 6,
-                pointBackgroundColor: '#ce1126'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: false,
-                    title: { display: true, text: 'Exchange Rate (MWK/USD)' }
-                }
-            },
-            plugins: {
-                legend: { position: 'bottom' }
-            }
-        }
-    });
-</script>
 
 </body>
 </html>
